@@ -35,7 +35,8 @@ describe('Game') do
 
   context('.player_count') do
     it('returns the number of players in a game') do
-      
+      2.times {@game.add_player(Player.new)}
+      expect(@game.player_count).to(eq(2))
     end
   end
 

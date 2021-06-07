@@ -23,6 +23,7 @@ class Game
 
   # Returns the number of players in this game
   def player_count
+    players.length
   end
 
   def send_message_to_players(message)
