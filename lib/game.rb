@@ -18,7 +18,7 @@ class Game
   end
 
   def set_started(value)
-    started = value
+    @started = value
   end
 
   # Returns the number of players in this game

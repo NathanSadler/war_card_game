@@ -44,7 +44,7 @@ describe('Game') do
   context('.send_message_to_players_in_game') do
     it('sends a message to all players in the game') do
       4.times {connect_client(@server, "Player Name", @client_list)}
-
+      
     end
   end
 end

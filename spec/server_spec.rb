@@ -4,6 +4,7 @@ require_relative '../lib/player'
 require_relative '../lib/game'
 require_relative '../lib/server'
 require_relative '../lib/playing_card'
+require 'pry'
 
 def connect_client(server, player_name, client_list)
   client = Client.new(server.port_number)
@@ -26,13 +27,26 @@ describe('Server') do
     end
   end
 
+  context('.create_game') do
+    it('creates a new game') do
+      @server.create_game
+      expect(@server.games.length).to(eq(1))
+    end
+  end
+
   # TODO: finish add_client_to_last_game
   describe('.add_client_to_last_game') do
     it('adds a player with a client to the last available game') do
       connect_client(@server, "Player Name", @client_list)
       @server.add_client_to_last_game(0)
-      @server.add_client_to_last_game
       expect(@server.games[0].player_count).to(eq(1))
+    end
+    it('creates a game to add a player in if the last one is unavailable') do
+      connect_client(@server, "Player Name", @client_list)
+      @server.create_game
+      @server.games[0].set_started(true)
+      @server.add_client_to_last_game(0)
+      expect(@server.games[1].player_count).to(eq(1))
     end
   end
 end
