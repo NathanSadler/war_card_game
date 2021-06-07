@@ -1,7 +1,6 @@
 require_relative('playing_card')
 
 class CardHand
-
   def initialize
     @card_list = []
   end
@@ -32,6 +31,5 @@ class CardHand
     set_card_list(get_card_list.difference(cards_with_rank))
     cards_with_rank
   end
-
 
 end
