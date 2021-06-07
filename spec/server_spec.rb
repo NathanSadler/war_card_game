@@ -4,13 +4,8 @@ require_relative '../lib/player'
 require_relative '../lib/game'
 require_relative '../lib/server'
 require_relative '../lib/playing_card'
+require_relative '../lib/connect_client'
 require 'pry'
-
-def connect_client(server, player_name, client_list)
-  client = Client.new(server.port_number)
-  client_list.push(client)
-  server.accept_new_client
-end
 
 describe('Server') do
   before(:each) do

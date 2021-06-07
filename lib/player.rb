@@ -13,7 +13,7 @@ class Player
   end
 
 
-  def ask_player_for_cards_with_rank(rank)
+  def get_cards_from_player(rank, player)
     # This will try to get cards with a specific rank from
     # another player, but more needs to be done before
     # this can be implemented

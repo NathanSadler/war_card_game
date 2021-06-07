@@ -4,6 +4,7 @@ require_relative '../lib/player'
 require_relative '../lib/playing_card'
 require_relative '../lib/client'
 require_relative '../lib/server'
+require_relative '../lib/connect_client'
 
 describe('Player') do
   before(:each) do
@@ -13,13 +14,16 @@ describe('Player') do
     @client_list = []
   end
 
-  after(:each) do
-    @server.stop
-  end
-
   let(:server) {@server}
   let(:player) {@player}
   let(:client_list) {@client_list}
+
+  after(:each) do
+    server.stop
+    client_list.each do |client|
+      client.close
+    end
+  end
 
   describe('==') do
     it('is true if both players have the same ID') do
@@ -30,6 +34,13 @@ describe('Player') do
     end
     it("is false if the players have different names") do
       expect(Player.new(0, "John Doe") == Player.new(0, "Jane Doe")).to(eq(false))
+    end
+  end
+
+  context('.get_cards_from_player') do
+    it("removes cards with a specific rank from a specific player's and and adds"+
+    " them to its own hand") do
+
     end
   end
 

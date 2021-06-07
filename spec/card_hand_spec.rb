@@ -1,6 +1,7 @@
 require_relative '../lib/card_deck'
 require_relative '../lib/card_hand'
 require_relative '../lib/playing_card'
+require_relative '../lib/connect_client'
 
 describe 'CardHand' do
   before(:each) do
