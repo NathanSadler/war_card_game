@@ -2,16 +2,19 @@ require_relative('playing_card')
 require_relative('card_hand')
 
 class Player
-  attr_accessor :cards, :name
+  attr_accessor :hand, :name
   attr_reader  :id, :client
 
   def initialize(id = 0, name = nil)
-    @cards = CardHand.new
+    @hand = CardHand.new
     @name = name
     @id = id
     @client = nil
   end
 
+  def add_card_to_hand(card)
+    hand.add_card(card)
+  end
 
   def get_cards_from_player(rank, player)
     # This will try to get cards with a specific rank from

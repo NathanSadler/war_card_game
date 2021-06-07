@@ -4,6 +4,7 @@ require_relative '../lib/player'
 require_relative '../lib/playing_card'
 require_relative '../lib/client'
 require_relative '../lib/server'
+require_relative '../lib/game'
 require_relative '../lib/connect_client'
 
 describe('Player') do
@@ -37,10 +38,19 @@ describe('Player') do
     end
   end
 
+  context('.add_card_to_hand') do
+    it("adds a card to a player's hand") do
+      player.add_card_to_hand(PlayingCard.new("4", "C"))
+      expect(player.hand.has_card_with_rank?("4")).to(eq(true))
+    end
+  end
+
+  # TODO: finish after implementing add_card_to_hand
   context('.get_cards_from_player') do
     it("removes cards with a specific rank from a specific player's and and adds"+
     " them to its own hand") do
-
+      test_game = Game.new
+      2.times {test_game.add_player(Player.new)}
     end
   end
 
