@@ -27,26 +27,29 @@ describe('Server') do
     end
   end
 
+  let(:server) {@server}
+  let(:game) {@game}
+  let(:client_list) {@client_list}
+
   context('.create_game') do
     it('creates a new game') do
-      @server.create_game
-      expect(@server.games.length).to(eq(1))
+      server.create_game
+      expect(server.games.length).to(eq(1))
     end
   end
 
-  # TODO: finish add_client_to_last_game
   describe('.add_client_to_last_game') do
     it('adds a player with a client to the last available game') do
-      connect_client(@server, "Player Name", @client_list)
-      @server.add_client_to_last_game(0)
-      expect(@server.games[0].player_count).to(eq(1))
+      connect_client(server, "Player Name", client_list)
+      server.add_client_to_last_game(0)
+      expect(server.games[0].player_count).to(eq(1))
     end
     it('creates a game to add a player in if the last one is unavailable') do
-      connect_client(@server, "Player Name", @client_list)
-      @server.create_game
-      @server.games[0].set_started(true)
-      @server.add_client_to_last_game(0)
-      expect(@server.games[1].player_count).to(eq(1))
+      connect_client(server, "Player Name", client_list)
+      server.create_game
+      server.games[0].set_started(true)
+      server.add_client_to_last_game(0)
+      expect(server.games[1].player_count).to(eq(1))
     end
   end
 end

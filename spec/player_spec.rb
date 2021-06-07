@@ -10,12 +10,16 @@ describe('Player') do
     @server = Server.new
     @server.start
     @player = Player.new
-    @clients = []
+    @client_list = []
   end
 
   after(:each) do
     @server.stop
   end
+
+  let(:server) {@server}
+  let(:player) {@player}
+  let(:client_list) {@client_list}
 
   describe('==') do
     it('is true if both players have the same ID') do

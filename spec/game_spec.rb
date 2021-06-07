@@ -12,6 +12,7 @@ def connect_client(server, player_name, client_list)
 end
 
 describe('Game') do
+
   before(:each) do
     @game = Game.new
     @server = Server.new
@@ -26,25 +27,29 @@ describe('Game') do
     end
   end
 
+  let(:game) {@game}
+  let(:server) {@server}
+  let(:client_list) {@client_list}
+
   describe('.add_player') do
     it('adds a player to the game') do
-      @game.add_player(Player.new)
-      expect(@game.players).to(eq([Player.new]))
+      game.add_player(Player.new)
+      expect(game.players).to(eq([Player.new]))
     end
   end
 
   context('.player_count') do
     it('returns the number of players in a game') do
-      2.times {@game.add_player(Player.new)}
-      expect(@game.player_count).to(eq(2))
+      2.times {game.add_player(Player.new)}
+      expect(game.player_count).to(eq(2))
     end
   end
 
   ## TODO:  finish send_message_to_players_in_game
   context('.send_message_to_players_in_game') do
     it('sends a message to all players in the game') do
-      4.times {connect_client(@server, "Player Name", @client_list)}
-      
+      4.times {connect_client(server, "Player Name", client_list)}
+
     end
   end
 end
