@@ -1,5 +1,4 @@
 require_relative('playing_card')
-require_relative('card_hand')
 
 class Player
   attr_accessor :name
@@ -20,10 +19,9 @@ class Player
     end
   end
 
-  def get_cards_from_player(rank, player)
-    # This will try to get cards with a specific rank from
-    # another player, but more needs to be done before
-    # this can be implemented
+  def get_cards_from_player(rank:, player:)
+    taken_cards = player.remove_cards_with_rank(rank)
+    add_card_to_hand(taken_cards)
   end
 
   def set_client(client)

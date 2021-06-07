@@ -1,5 +1,4 @@
 require_relative '../lib/card_deck'
-require_relative '../lib/card_hand'
 require_relative '../lib/player'
 require_relative '../lib/playing_card'
 require_relative '../lib/client'
@@ -88,6 +87,11 @@ describe('Player') do
     " them to its own hand") do
       test_game = Game.new
       2.times {test_game.add_player(Player.new)}
+      card_list = [PlayingCard.new("4", "C"), PlayingCard.new("4", "D")]
+      test_game.players[0].set_cards(card_list)
+      test_game.players[1].get_cards_from_player(rank: "4", player: test_game.players[0])
+      expect(test_game.players[0].cards.empty?).to(eq(true))
+      expect(test_game.players[1].cards).to(eq(card_list))
     end
   end
 

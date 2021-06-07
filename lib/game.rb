@@ -1,5 +1,4 @@
 require_relative('playing_card')
-require_relative('card_hand')
 require_relative('card_deck')
 
 class Game
