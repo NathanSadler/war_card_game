@@ -26,9 +26,10 @@ class Game
     players.length
   end
 
+  # TODO: finish this later
   def send_message_to_players(message)
-    @players.each do |player|
-      player.client.puts(message)
+    players.each do |player|
+      player.client.socket.puts(message)
     end
   end
 end

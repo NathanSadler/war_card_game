@@ -9,7 +9,7 @@ class Client
   end
 
   def provide_input(text)
-  @socket.puts(text)
+    @socket.puts(text)
   end
 
   def get_socket

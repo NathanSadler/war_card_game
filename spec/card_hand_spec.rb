@@ -57,5 +57,11 @@ describe 'CardHand' do
       expect(@hand.remove_cards_with_rank("7")).to(eq([card_b, card_c]))
       expect(@hand.get_card_list).to(eq([card_a]))
     end
+    it('returns an empty array if there are no cards with the given rank in the hand') do
+      card_a = PlayingCard.new("4", "S")
+      card_b = PlayingCard.new("5", "S")
+      @hand.add_card([card_a, card_b])
+      expect(@hand.remove_cards_with_rank("6")).to(eq([]))
+    end
   end
 end

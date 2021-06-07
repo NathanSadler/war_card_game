@@ -28,10 +28,12 @@ class Server
   end
 
   def add_client_to_last_game(client_index)
+    player_to_add = Player.new(client_index, "User #{client_index}")
+    player_to_add.set_client(clients[client_index])
     if (games.empty? || games[-1].started)
       games.push(Game.new)
     end
-    games[-1].add_player(clients[client_index])
+    games[-1].add_player(player_to_add)
   end
 
   def start

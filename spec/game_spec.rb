@@ -5,11 +5,11 @@ require_relative '../lib/game'
 require_relative '../lib/server'
 require_relative '../lib/playing_card'
 
-def connect_client(server, player_name, client_list)
-  client = Client.new(server.port_number)
-  client_list.push(client)
-  server.accept_new_client
-end
+  def connect_client(server, player_name, client_list)
+    client = Client.new(server.port_number)
+    client_list.push(client)
+    server.accept_new_client
+  end
 
 describe('Game') do
 
@@ -49,7 +49,18 @@ describe('Game') do
   context('.send_message_to_players_in_game') do
     it('sends a message to all players in the game') do
       4.times {connect_client(server, "Player Name", client_list)}
+      (0..3).each {|index| server.add_client_to_last_game(index)}
 
+      connect_client(server, "Player Name", client_list)
+      game.send_message_to_players("Hello World")
+
+      # [0..3].each {|index| expect(client_list[index].capture_output.include?(
+      #   "Hello World")).to(eq(true))}
+      message = client_list[0].capture_output
+      #binding.pry
+      #expect(client_list[0].capture_output.include?("Hello World")).to(eq(true))
+      expect(client_list[0].capture_output.include?("Hello World")).to(eq(true))
+      expect(client_list[-1].capture_output.include?("Hello World")).to(eq(false))
     end
   end
 end

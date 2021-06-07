@@ -33,13 +33,13 @@ describe('Player') do
     end
   end
 
-  context('.set_client') do
-    it('sets the client associated with this player') do
-      test_client = Client.new()
-      @player.set_client(test_client)
-      expect(@player.client).to(eq(test_client))
-      test_client.close
-    end
-  end
+  # context('.set_client') do
+  #   it('sets the client associated with this player') do
+  #     test_client = Client.new()
+  #     player.set_client(test_client)
+  #     expect(player.client).to(eq(test_client))
+  #     test_client.close
+  #   end
+  # end
 
 end

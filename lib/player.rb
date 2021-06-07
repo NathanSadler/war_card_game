@@ -12,6 +12,7 @@ class Player
     @client = nil
   end
 
+
   def ask_player_for_cards_with_rank(rank)
     # This will try to get cards with a specific rank from
     # another player, but more needs to be done before
@@ -21,6 +22,7 @@ class Player
   def set_client(client)
     @client = client
   end
+
 
   # Be sure to override hash later!
   def ==(other_player)
