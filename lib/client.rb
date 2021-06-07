@@ -1,12 +1,11 @@
 require 'socket'
 class Client
 
-  attr_reader :previous_message, :player
+  attr_reader :previous_message
 
   def initialize(port=3336, ip='localhost')
     @socket = TCPSocket.new(ip, port)
     @previous_message = nil
-    @player = nil
   end
 
   def provide_input(text)
@@ -17,9 +16,9 @@ class Client
     return @socket
   end
 
-  def set_player(player)
-    @player = player
-  end
+  # def set_player(player)
+  #   @player = player
+  # end
 
   def capture_output(delay=0.1)
     sleep(delay)
