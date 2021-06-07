@@ -6,10 +6,10 @@ class Game
   attr_reader :game_id
   attr_accessor :players
 
-  def initialize(game_id = 0)
+  def initialize(id = 0)
     @deck = CardDeck.new
     @players = []
-    @game_id = game_id
+    @game_id = id
   end
 
   def add_player(player)
