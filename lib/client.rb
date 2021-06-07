@@ -16,10 +16,6 @@ class Client
     return @socket
   end
 
-  # def set_player(player)
-  #   @player = player
-  # end
-
   def capture_output(delay=0.1)
     sleep(delay)
     @output = @socket.read_nonblock(1000) # not gets which blocks

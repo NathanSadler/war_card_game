@@ -5,7 +5,7 @@ require 'socket'
 
 class Server
   attr_reader :clients
-  
+
   def initialize
     @clients = []
   end
@@ -34,4 +34,6 @@ class Server
   def stop
     @server.close if @server
   end
+
+
 end

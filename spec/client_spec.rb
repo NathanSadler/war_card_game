@@ -27,14 +27,6 @@ describe 'Client' do
     end
   end
 
-  # context('.set_player') do
-  #   it('sets the player associated with the client') do
-  #     test_player = Player.new(0, "John Doe")
-  #     @test_client.set_player(test_player)
-  #     expect(@test_client.player).to(eq(test_player))
-  #   end
-  # end
-
   context('.set_clients') do
     it('sets the clients array') do
       @server.set_clients([Client.new, Client.new])
