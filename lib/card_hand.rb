@@ -17,7 +17,6 @@ class CardHand
   def add_card(to_add)
     if to_add.is_a?(Array)
       set_card_list(get_card_list.concat(to_add))
-      print(get_card_list)
     else
       set_card_list(get_card_list.push(to_add))
     end
@@ -27,4 +26,12 @@ class CardHand
     selected_cards = get_card_list.select {|card| card.rank == rank}
     selected_cards.length > 0
   end
+
+  def remove_cards_with_rank(rank)
+    cards_with_rank = get_card_list.select {|card| card.rank == rank}
+    set_card_list(get_card_list.difference(cards_with_rank))
+    cards_with_rank
+  end
+
+
 end
