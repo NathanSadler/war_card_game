@@ -1,8 +1,8 @@
-require 'go_fish_client'
-require 'game'
-require 'player'
+require_relative 'go_fish_client'
+require_relative 'game'
+require_relative 'player'
 require 'socket'
-require "person"
+require_relative "person"
 
 class Server
   attr_reader :clients, :sockets
@@ -27,6 +27,8 @@ class Server
   def accept_new_client_and_create_person(go_fish_client=nil, name=nil)
     socket = @server.accept_nonblock
     people.push(Person.new(go_fish_client, name, Player.new, socket))
+    rescue IO::WaitReadable
+      @output = ""
   end
 
   def games

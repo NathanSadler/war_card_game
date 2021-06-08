@@ -1,4 +1,6 @@
-require_relative('server')
+#require_relative('go_fish_client')
+require_relative('go_fish_server')
+
 
 server = Server.new
 

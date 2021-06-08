@@ -19,8 +19,8 @@ class GoFishClient
   def capture_output(delay=0.1)
     sleep(delay)
     @output = @socket.read_nonblock(1000) # not gets which blocks
-  rescue IO::WaitReadable
-    @output = ""
+    rescue IO::WaitReadable
+      @output = ""
   end
 
   def close
