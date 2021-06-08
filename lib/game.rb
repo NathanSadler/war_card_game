@@ -32,7 +32,16 @@ class Game
       joined_person.socket.puts("#{joined_person.name} has joined the game.")
     end
     set_people(people.push(person))
+    # TODO: Make it so that a game starts when the host specifies or 7 people
+    # join the game, then delete this
+    if people.length >= 2
+      play_game
+    end
+  end
 
+  # TODO: properly implement this
+  def play_game
+    send_message_to_people_in_game("Game would have started if this was finished")
   end
 
   def set_started(value)
