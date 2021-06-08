@@ -4,6 +4,7 @@ require_relative '../lib/game'
 require_relative '../lib/server'
 require_relative '../lib/playing_card'
 require_relative '../lib/connect_client'
+require 'socket'
 require 'pry'
 
 describe('Server') do
@@ -37,6 +38,14 @@ describe('Server') do
       connect_client(server, "Player Name", client_list)
       copy_person = Person.new(GoFishClient.new, name = "Player Name", Player.new)
       expect(server.people[0]).to(eq(copy_person))
+    end
+  end
+
+  context('.set_clients') do
+    it('sets the clients array') do
+      @server.set_clients([TCPSocket.new('localhost', 3336),
+        TCPSocket.new('localhost', 3336)])
+      expect(@server.clients.length).to(eq(2))
     end
   end
 

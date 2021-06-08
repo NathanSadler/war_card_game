@@ -21,11 +21,4 @@ describe 'Client' do
     end
   end
 
-  context('.set_clients') do
-    it('sets the clients array') do
-      @server.set_clients([GoFishClient.new, GoFishClient.new])
-      expect(@server.clients.length).to(eq(2))
-    end
-  end
-
 end
