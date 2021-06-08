@@ -25,8 +25,14 @@ class Game
     @people = new_people
   end
 
+  # Also sends a notification to all other players in the game
+  # that a new player has joined
   def add_person(person)
+    people.each do |joined_person|
+      joined_person.socket.puts("#{joined_person.name} has joined the game.")
+    end
     set_people(people.push(person))
+
   end
 
   def set_started(value)

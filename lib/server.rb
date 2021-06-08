@@ -24,9 +24,8 @@ class Server
     @clients = clients
   end
 
-  def accept_new_client_and_create_person(go_fish_client, name=nil)
+  def accept_new_client_and_create_person(go_fish_client=nil, name=nil)
     socket = @server.accept_nonblock
-    #clients.push(client)
     people.push(Person.new(go_fish_client, name, Player.new, socket))
   end
 

@@ -5,6 +5,11 @@ require_relative '../lib/server'
 require_relative '../lib/playing_card'
 require_relative '../lib/connect_client'
 
+def create_person_and_add_to_game(server, player_name, client_list)
+  connect_client(server, player_name, client_list)
+  server.assign_people_to_game
+end
+
 describe('Game') do
 
   before(:each) do
@@ -39,11 +44,19 @@ describe('Game') do
     end
   end
 
+  # TODO: Finish this after removing go_fish_client from
+  # accept_new_client_and_create_person
   context('.add_person') do
     it("adds a person to the game") do
       default_person = Person.new
       game.add_person(default_person)
       expect(game.people).to(eq([default_person]))
+    end
+    it("sends a message to all other people when a new person joins the game") do
+      2.times {create_person_and_add_to_game(server, "Player Name", client_list)}
+      expected = "Player Name has joined the game."
+      expect(client_list[0].capture_output.include?(expected)).to(eq(true))
+      expect(client_list[1].capture_output.include?(expected)).to(eq(false))
     end
   end
 
