@@ -1,5 +1,5 @@
 require 'socket'
-require_relative '../lib/server'
+require_relative '../lib/go_fish_server'
 require_relative '../lib/go_fish_client'
 require_relative '../lib/player'
 require_relative '../lib/playing_card'
