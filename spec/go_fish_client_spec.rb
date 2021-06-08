@@ -1,6 +1,6 @@
 require 'socket'
 require_relative '../lib/server'
-require_relative '../lib/client'
+require_relative '../lib/go_fish_client'
 require_relative '../lib/player'
 require_relative '../lib/playing_card'
 require_relative '../lib/connect_client'
@@ -23,7 +23,7 @@ describe 'Client' do
 
   context('.set_clients') do
     it('sets the clients array') do
-      @server.set_clients([Client.new, Client.new])
+      @server.set_clients([GoFishClient.new, GoFishClient.new])
       expect(@server.clients.length).to(eq(2))
     end
   end

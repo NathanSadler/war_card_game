@@ -1,5 +1,5 @@
 require 'socket'
-class Client
+class GoFishClient
 
   attr_reader :previous_message
 

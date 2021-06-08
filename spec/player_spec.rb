@@ -1,7 +1,7 @@
 require_relative '../lib/card_deck'
 require_relative '../lib/player'
 require_relative '../lib/playing_card'
-require_relative '../lib/client'
+require_relative '../lib/go_fish_client'
 require_relative '../lib/server'
 require_relative '../lib/game'
 require_relative '../lib/connect_client'
@@ -81,7 +81,6 @@ describe('Player') do
     end
   end
 
-  # TODO: finish this
   context('.get_cards_from_player') do
     it("removes cards with a specific rank from a specific player's and and adds"+
     " them to its own hand") do
@@ -95,13 +94,5 @@ describe('Player') do
     end
   end
 
-  # context('.set_client') do
-  #   it('sets the client associated with this player') do
-  #     test_client = Client.new()
-  #     player.set_client(test_client)
-  #     expect(player.client).to(eq(test_client))
-  #     test_client.close
-  #   end
-  # end
 
 end

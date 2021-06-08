@@ -1,13 +1,14 @@
-require 'client'
+require 'go_fish_client'
 require 'game'
 require 'player'
 require 'socket'
 
 class Server
-  attr_reader :clients
+  attr_reader :clients, :sockets
 
   def initialize
     @clients = []
+    @sockets = []
   end
 
   def port_number
@@ -18,9 +19,9 @@ class Server
     @clients = clients
   end
 
-  def accept_new_client
+  def accept_new_client(client)
     client = @server.accept_nonblock
-    @clients.push(client)
+    clients.push(client)
   end
 
   def games

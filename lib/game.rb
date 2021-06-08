@@ -25,10 +25,10 @@ class Game
     players.length
   end
 
-  # TODO: finish this later
   def send_message_to_players(message)
     players.each do |player|
-      player.client.socket.puts(message)
+      player.display_message_to_client(message)
     end
   end
+
 end
