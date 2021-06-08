@@ -49,18 +49,14 @@ describe('Game') do
 
   ## TODO:  finish send_message_to_players_in_game. Think about which side each
   # socket is on
-  context('.send_message_to_players_in_game') do
-    it('sends a message to all players in the game') do
+  context('.send_message_to_people_in_game') do
+    it('sends a message to all people in the game') do
       4.times {connect_client(server, "Player Name", client_list)}
-      (0..3).each {|index| server.add_client_to_last_game(index)}
+      server.assign_people_to_game
 
       connect_client(server, "Player Name", client_list)
-      game.send_message_to_players("Hello World")
-
-      # [0..3].each {|index| expect(client_list[index].capture_output.include?(
-      #   "Hello World")).to(eq(true))}
-      #message = client_list[0].capture_output
-      #expect(client_list[0].capture_output.include?("Hello World")).to(eq(true))
+      server.games[0].send_message_to_people_in_game("Hello World")
+      #binding.pry
       expect(client_list[0].capture_output.include?("Hello World")).to(eq(true))
       expect(client_list[-1].capture_output.include?("Hello World")).to(eq(false))
     end

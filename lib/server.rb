@@ -25,9 +25,9 @@ class Server
   end
 
   def accept_new_client_and_create_person(go_fish_client, name=nil)
-    client = @server.accept_nonblock
-    clients.push(client)
-    people.push(Person.new(go_fish_client, name, Player.new))
+    socket = @server.accept_nonblock
+    #clients.push(client)
+    people.push(Person.new(go_fish_client, name, Player.new, socket))
   end
 
   def games
@@ -43,7 +43,6 @@ class Server
     games[-1].add_player(player_to_add)
   end
 
-  # TODO: finish this
   # Add every player not in a game to a new game
   def assign_people_to_game
     unassigned_people = people.select { |person| !person.in_game }

@@ -38,9 +38,9 @@ class Game
     players.length
   end
 
-  def send_message_to_players(message)
-    players.each do |player|
-      player.display_message_to_client(message)
+  def send_message_to_people_in_game(message)
+    people.each do |person|
+      person.socket.puts(message)
     end
   end
 
