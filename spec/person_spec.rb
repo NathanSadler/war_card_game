@@ -9,7 +9,7 @@ require_relative '../lib/connect_client'
 
 describe 'Person' do
   before(:each) do
-    @person = Person.new
+    @person = Person.new()
     @server = Server.new
     @server.start
   end
@@ -43,6 +43,25 @@ describe 'Person' do
       # for GoFishClient
       expect(person.go_fish_client.nil?).to(eq(false))
       new_client.close
+    end
+  end
+
+  context('.==') do
+    before(:each) do
+      @test_person = Person.new(nil, "Test Player", Player.new)
+    end
+
+    let(:test_person) {@test_person}
+    it("is true if the name and player are equal") do
+      expect(test_person).to(eq(Person.new(nil, "Test Player", Player.new)))
+    end
+    it("is false if the names are different") do
+      second_person = Person.new(nil, "New Player", Player.new)
+      expect(test_person == second_person).to(eq(false))
+    end
+    it("is false if the Player objects are different") do
+      second_person = Person.new(nil, "Test Player", Player.new(1))
+      expect(test_person == second_person).to(eq(false))
     end
   end
 end

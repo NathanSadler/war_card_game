@@ -8,7 +8,7 @@ class Server
 
   def initialize
     @clients = []
-    @sockets = []
+    @people = []
   end
 
   def port_number

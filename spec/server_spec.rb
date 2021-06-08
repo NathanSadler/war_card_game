@@ -32,6 +32,12 @@ describe('Server') do
     end
   end
 
+  context('.accept_new_client') do
+    it("creates and saves a person class") do
+      
+    end
+  end
+
   describe('.add_client_to_last_game') do
     it('adds a player with a client to the last available game') do
       connect_client(server, "Player Name", client_list)
