@@ -43,6 +43,11 @@ class Server
     games[-1].add_player(player_to_add)
   end
 
+  # Add every player not in a game to a new game
+  def assign_people_to_game
+    
+  end
+
   def start
     @server = TCPServer.new(port_number)
   end

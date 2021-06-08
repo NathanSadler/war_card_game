@@ -21,6 +21,13 @@ describe 'Person' do
     server.stop
   end
 
+  context('.set_in_game') do
+    it("sets the state of the in_game instance variable") do
+      person.set_in_game(true)
+      expect(person.in_game).to(eq(true))
+    end
+  end
+
   context('.set_name') do
     it("sets the person's name") do
       person.set_name("John Doe")
@@ -50,7 +57,6 @@ describe 'Person' do
     before(:each) do
       @test_person = Person.new(nil, "Test Player", Player.new)
     end
-
     let(:test_person) {@test_person}
     it("is true if the name and player are equal") do
       expect(test_person).to(eq(Person.new(nil, "Test Player", Player.new)))

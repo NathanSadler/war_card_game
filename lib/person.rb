@@ -3,10 +3,15 @@ class Person
     @go_fish_client = go_fish_client
     @name = name
     @player = player
+    @in_game = false
   end
 
   def go_fish_client
     @go_fish_client
+  end
+
+  def in_game
+    @in_game
   end
 
   def name
@@ -19,6 +24,10 @@ class Person
 
   def set_go_fish_client(go_fish_client)
     @go_fish_client = go_fish_client
+  end
+
+  def set_in_game(new_state)
+    @in_game = new_state
   end
 
   def set_name(new_name)

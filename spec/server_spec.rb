@@ -34,19 +34,19 @@ describe('Server') do
 
   context('.accept_new_client_and_create_person') do
     it("creates and saves a person class") do
-      connect_client(server, "Player Name", client_list, "Player Name")
+      connect_client(server, "Player Name", client_list)
       copy_person = Person.new(GoFishClient.new, name = "Player Name", Player.new)
       expect(server.people[0]).to(eq(copy_person))
     end
   end
 
-  describe('.add_client_to_last_game') do
-    it('adds a player with a client to the last available game') do
+  describe('.add_person_to_last_game') do
+    it('adds a person to the last available game') do
       connect_client(server, "Player Name", client_list)
       server.add_client_to_last_game(0)
       expect(server.games[0].player_count).to(eq(1))
     end
-    it('creates a game to add a player in if the last one is unavailable') do
+    it('creates a game to add a person in if the last one is unavailable') do
       connect_client(server, "Player Name", client_list)
       server.create_game
       server.games[0].set_started(true)
