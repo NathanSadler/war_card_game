@@ -8,12 +8,25 @@ class Game
   def initialize(id = 0)
     @deck = CardDeck.new
     @players = []
+    @people = []
     @game_id = id
     @started = false
   end
 
   def add_player(player)
     players.push(player)
+  end
+
+  def people
+    @people
+  end
+
+  def set_people(new_people)
+    @people = new_people
+  end
+
+  def add_person(person)
+    set_people(people.push(person))
   end
 
   def set_started(value)

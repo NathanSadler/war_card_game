@@ -39,4 +39,30 @@ describe('Game') do
     end
   end
 
+  context('.add_person') do
+    it("adds a person to the game") do
+      default_person = Person.new
+      game.add_person(default_person)
+      expect(game.people).to(eq([default_person]))
+    end
+  end
+
+  ## TODO:  finish send_message_to_players_in_game. Think about which side each
+  # socket is on
+  context('.send_message_to_players_in_game') do
+    it('sends a message to all players in the game') do
+      4.times {connect_client(server, "Player Name", client_list)}
+      (0..3).each {|index| server.add_client_to_last_game(index)}
+
+      connect_client(server, "Player Name", client_list)
+      game.send_message_to_players("Hello World")
+
+      # [0..3].each {|index| expect(client_list[index].capture_output.include?(
+      #   "Hello World")).to(eq(true))}
+      #message = client_list[0].capture_output
+      #expect(client_list[0].capture_output.include?("Hello World")).to(eq(true))
+      expect(client_list[0].capture_output.include?("Hello World")).to(eq(true))
+      expect(client_list[-1].capture_output.include?("Hello World")).to(eq(false))
+    end
+  end
 end

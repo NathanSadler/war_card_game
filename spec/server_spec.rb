@@ -40,6 +40,37 @@ describe('Server') do
     end
   end
 
+  context('.create_game_if_neccessary') do
+    it("creates a new game if none have been created yet") do
+      server.create_game_if_neccessary
+      expect(server.games.length).to(eq(1))
+    end
+    it("creates a new game if the last one has started") do
+      server.create_game
+      server.games[0].set_started(true)
+      server.create_game_if_neccessary
+      expect(server.games.length).to(eq(2))
+    end
+    it("doesn't create a new game if the last one is available") do
+      server.create_game
+      server.create_game_if_neccessary
+      expect(server.games.length).to(eq(1))
+    end
+  end
+
+  # TODO: finish this
+  context('.assign_people_to_game') do
+    it("adds all players to the last available game") do
+      2.times {connect_client(server, "Player Name", client_list)}
+      server.assign_people_to_game
+      server.games[0].set_started(true)
+      connect_client(server, "Player Name", client_list)
+      server.assign_people_to_game
+      expect(server.games[0].people.length).to(eq(2))
+      expect(server.games[1].people.length).to(eq(1))
+    end
+  end
+
   describe('.add_person_to_last_game') do
     it('adds a person to the last available game') do
       connect_client(server, "Player Name", client_list)

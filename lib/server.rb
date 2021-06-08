@@ -43,9 +43,21 @@ class Server
     games[-1].add_player(player_to_add)
   end
 
+  # TODO: finish this
   # Add every player not in a game to a new game
   def assign_people_to_game
-    
+    unassigned_people = people.select { |person| !person.in_game }
+    unassigned_people.each do |person|
+      create_game_if_neccessary
+      games[-1].add_person(person)
+      person.set_in_game(true)
+    end
+  end
+
+  def create_game_if_neccessary
+    if (games.empty? || games[-1].started)
+      games.push(Game.new)
+    end
   end
 
   def start
